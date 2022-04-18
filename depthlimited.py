@@ -1,4 +1,4 @@
-def depth_limited_search(graph, start, visited, level, limit):
+def depth_limited_search(graph, start, end, visited, level, limit):
     if level == limit:
         return
 
@@ -6,9 +6,12 @@ def depth_limited_search(graph, start, visited, level, limit):
     
     print(start, end=" ")
 
+    if start==end:
+        return
+
     for neighbour in graph[start]:
         if neighbour not in visited:
-            depth_limited_search(graph, neighbour, visited, level + 1, limit)
+            depth_limited_search(graph, neighbour, end, visited, level + 1, limit)
 
 graph = {
     'S' : {'A':3, 'B':2},
@@ -23,4 +26,4 @@ graph = {
     'H' : {'E':5}
 }
 
-depth_limited_search(graph, 'S', set(), 0, 3)
+depth_limited_search(graph, 'S', 'G', set(), 0, 3)
